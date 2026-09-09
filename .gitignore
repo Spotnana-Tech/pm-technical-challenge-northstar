@@ -5,6 +5,9 @@ private/
 *Interviewer*
 NOTES.md
 
+# Working notes for the team building this exercise — never commit
+dev-docs/
+
 # Dependencies / build
 node_modules/
 dist/
