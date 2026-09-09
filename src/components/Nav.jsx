@@ -1,12 +1,17 @@
 import { NavLink } from 'react-router-dom'
 
+import { useNorthStar } from '../state/NorthStarContext.jsx'
+
 const LINKS = [
   { to: '/', label: 'Results' },
   { to: '/traveler', label: 'Traveler' },
   { to: '/policy', label: 'Policy & data' },
+  { to: '/worksheet', label: 'Worksheet' },
 ]
 
 export default function Nav() {
+  const { isLive } = useNorthStar()
+
   return (
     <header className="nav">
       <div className="nav__inner">
@@ -23,7 +28,9 @@ export default function Nav() {
             </NavLink>
           ))}
         </nav>
-        <span className="nav__env ns-small ns-tertiary">Prototype</span>
+        <span className="nav__env ns-small ns-tertiary">
+          {isLive ? 'Live session' : 'Prototype'}
+        </span>
       </div>
     </header>
   )

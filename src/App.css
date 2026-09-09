@@ -131,7 +131,9 @@
   gap: var(--ns-space-2);
 }
 
-.field__select {
+.field__select,
+.field__input,
+.field__textarea {
   font-family: inherit;
   font-size: 14px;
   color: var(--ns-text);
@@ -139,7 +141,21 @@
   border: 1px solid var(--ns-border-strong);
   border-radius: var(--ns-radius-chip);
   padding: 7px 10px;
+}
+
+.field__select {
   min-width: 180px;
+}
+
+.field__input,
+.field__textarea {
+  width: 100%;
+  min-width: 0;
+}
+
+.field__textarea {
+  resize: vertical;
+  line-height: 1.4;
 }
 
 /* error surfaces */
@@ -531,6 +547,145 @@
   vertical-align: top;
 }
 
+/* live session strip */
+
+.session-strip {
+  background: var(--ns-surface-alt);
+  border-bottom: 1px solid var(--ns-border);
+  padding: var(--ns-space-2) var(--ns-space-4);
+}
+
+.session-strip__inner,
+.session-strip__note {
+  max-width: var(--ns-max-width);
+  margin: 0 auto;
+}
+
+.session-strip__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--ns-space-4);
+}
+
+.session-strip__segments {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.session-strip__segments,
+.session-strip__actions,
+.worksheet__toolbar,
+.worksheet__checks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ns-space-2);
+}
+
+.session-strip__segment,
+.worksheet__check {
+  font-size: 12px;
+  border: 1px solid var(--ns-border);
+  border-radius: var(--ns-radius-pill);
+  padding: 2px 10px;
+  white-space: nowrap;
+}
+
+.session-strip__segment--current {
+  background: var(--ns-brand);
+  border-color: var(--ns-brand);
+  color: #fff;
+  font-weight: 600;
+}
+
+.session-strip__segment--done {
+  color: var(--ns-text-tertiary);
+}
+
+.session-strip__timers {
+  margin-left: auto;
+  display: flex;
+  align-items: baseline;
+  gap: var(--ns-space-3);
+}
+
+.session-strip__clock {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 18px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.session-strip__clock--warning {
+  color: var(--ns-warning-text);
+}
+
+.session-strip__clock--over {
+  color: var(--ns-error);
+}
+
+.session-strip__total {
+  white-space: nowrap;
+}
+
+.session-strip__note {
+  margin: var(--ns-space-1) auto 0;
+}
+
+/* worksheet */
+
+.worksheet__context,
+.worksheet__rank {
+  margin: var(--ns-space-1) 0 0;
+}
+
+.worksheet__toolbar {
+  margin-top: var(--ns-space-3);
+}
+
+.worksheet__section > .ns-h2 + p {
+  margin: 0 0 var(--ns-space-3);
+}
+
+.worksheet__bundles,
+.worksheet__clauses {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ns-space-4);
+}
+
+.worksheet__bundle {
+  border-top: 1px solid var(--ns-border);
+  padding-top: var(--ns-space-2);
+}
+
+.worksheet__row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--ns-space-3);
+  margin-top: var(--ns-space-2);
+}
+
+.worksheet__row--reasons {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.worksheet__select {
+  min-width: 0;
+  width: 100%;
+}
+
+.worksheet__checks {
+  margin-bottom: var(--ns-space-3);
+}
+
+.worksheet__check {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ns-space-1);
+  cursor: pointer;
+}
+
 @media (max-width: 900px) {
   .nav__inner {
     gap: var(--ns-space-4);
@@ -579,5 +734,18 @@
 
   .table-wrap .ns-table {
     white-space: normal;
+  }
+
+  .session-strip__inner {
+    flex-wrap: wrap;
+  }
+
+  .session-strip__timers {
+    margin-left: 0;
+  }
+
+  .worksheet__row,
+  .worksheet__row--reasons {
+    grid-template-columns: 1fr;
   }
 }

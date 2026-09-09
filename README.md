@@ -4,17 +4,40 @@ You are the product manager for the flight and hotel results page at NorthStar T
 
 ## Time box
 
+This exercise runs in two formats — a take-home or a single 60-minute live session — and your recruiter will tell you which one you are in. The time box and deliverables immediately below are the take-home format; see [Two formats](#two-formats).
+
 Three hours, hard stop. We would rather see a sharp partial answer than a padded complete one. Don't try to cover everything; decide what matters most and go deep on that.
 
 AI tools are allowed and expected. You will be assessed on judgment, verification and ownership — not on which tools you used or how the prose reads.
 
-## Deliverables
+## Deliverables (take-home)
 
 1. **The workbook.** `workbook/NorthStar Exercise - Candidate Workbook.xlsx` has four sheets for you to fill in: `Submission`, `Ranking_Constitution`, `Evidence_Ledger`, `Cold_Start_Answer`. This is the scored submission.
 2. **Your edits to `src/ranking/constitution.js`.** Strongly encouraged. The live review runs this app with your file in place, so what you wrote is what gets demonstrated.
 3. **An optional `NOTES.md`** at the repo root (already listed in `.gitignore`, so it will not show up in `git status`) describing any changes you would make to the results page UI itself and why.
 
 No memo, no deck, no separate write-up. The workbook sheets and your code are the submission.
+
+## Two formats
+
+Same trip, same page, same questions, assessed the same way. Your recruiter will tell you which format you are in.
+
+**Take-home.** As described above: three hours in your own time, the workbook, your edits to `src/ranking/constitution.js` if you make any, an optional `NOTES.md`, and a live review afterwards.
+
+**Live (60 minutes).** Nothing to prepare beyond installing the app and reading this README — about fifteen minutes. We work in the app together on a shared screen for one hour. The **Worksheet** page replaces the workbook: you fill it in as we go and export it at the end, so there is nothing to write up and nothing to send afterwards.
+
+Open the app with `?mode=live` — `http://localhost:5173/?mode=live` — and a session strip appears under the scenario bar showing the agenda and the clock:
+
+| Segment | Minutes |
+|---|---|
+| Framing | 5 |
+| Audit today's page | 15 |
+| Write the rules | 15 |
+| Make one rule bind | 10 |
+| New fact, rerank, cold start | 10 |
+| Wrap | 5 |
+
+You may edit `src/ranking/constitution.js` during the session, and one of the segments is for exactly that. You can type it yourself or dictate it and we will type — nothing is scored on typing speed, and we care about where a rule belongs and what you expect it to change far more than about whether it runs first time.
 
 ## Setup
 
@@ -52,7 +75,7 @@ Northstar/
 │   ├── scenarios/                scenario JSON files the app can load (see below)
 │   ├── state/                    app-wide context: current traveler, scenario, view state
 │   ├── components/                UI pieces: nav, cards, audit panel, etc.
-│   └── pages/                    Results, Traveler, Policy
+│   └── pages/                    Results, Traveler, Policy, Worksheet
 └── README.md
 ```
 
@@ -100,6 +123,8 @@ The engine wraps every one of these calls, so if your code throws or returns som
 
 **Policy** lists the policy rules, the commercial terms, and the data dictionary for the underlying fields, so you can check what a column actually means before you rely on it.
 
+**Worksheet** is where the written answer goes in the live format: the workbook's four submission sheets as a page, autosaved in your browser, with an **Export markdown** button that copies and downloads the whole thing. In the take-home format it is a scratchpad — the workbook is still the submission.
+
 The **internal view** toggle, off by default, shows what the traveler themselves would never see: commission, rebate, and the other internal figures behind each option. Toggling it off removes that information from the page entirely, not just visually. The audit panel is the exception: it always shows the commercial delta for every option, because that is what it is for.
 
 The **audit panel** lists, for every option, its base score, commercial delta, final score, rank before and after that delta, and any disclosure text — with a button to copy the whole table as JSON. It's the same data the engine hands to `disclose`, made visible for debugging.
@@ -126,11 +151,11 @@ A scenario patches the trip request, one or more travelers, and/or individual op
 
 You can also load a scenario directly via the URL: `?scenario=<id>&traveler=<id>`.
 
-In the live review we may load a scenario you have not seen.
+In the live review, or during a live session, we may load a scenario you have not seen.
 
-## Submitting
+## Submitting (take-home)
 
-Zip up the filled workbook, your `src/ranking/constitution.js` if you changed it, and `NOTES.md` if you wrote one, and send that zip to your recruiter. Please do not open a pull request and do not push a public fork of this repo — it's public, and a fork would make your answer visible to other candidates.
+Zip up the filled workbook, your `src/ranking/constitution.js` if you changed it, and `NOTES.md` if you wrote one, and send that zip to your recruiter. In the live format there is nothing to submit: the exported worksheet is the record. Please do not open a pull request and do not push a public fork of this repo — it's public, and a fork would make your answer visible to other candidates.
 
 ## Questions
 

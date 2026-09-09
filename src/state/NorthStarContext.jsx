@@ -17,6 +17,10 @@ const NorthStarContext = createContext(null)
 const TRAVELERS = Object.values(travelersById)
 const SCENARIOS = listScenarios()
 
+/** `?mode=live` runs the 60-minute sitting; anything else is the take-home. */
+const LIVE_MODE = 'live'
+const TAKEHOME_MODE = 'takehome'
+
 /** The traveler with a history to learn from is the default view. */
 const DEFAULT_TRAVELER_ID =
   (TRAVELERS.find((traveler) => !traveler.is_cold_start) ?? TRAVELERS[0] ?? {}).traveler_id ?? ''
@@ -129,6 +133,17 @@ export function NorthStarProvider({ children }) {
     [writeParams],
   )
 
+  // Mode lives in the URL for the same reason the selectors do: the link the
+  // host pastes into the shared browser is the whole setup step. An
+  // unrecognised value is the take-home rather than an error, because the
+  // take-home is what the repo is by default.
+  const mode = searchParams.get('mode') === LIVE_MODE ? LIVE_MODE : TAKEHOME_MODE
+  const isLive = mode === LIVE_MODE
+  const setMode = useCallback(
+    (next) => writeParams({ mode: next === LIVE_MODE ? LIVE_MODE : null }),
+    [writeParams],
+  )
+
   const scenario = getScenario(scenarioId) ?? NONE
   const { trip, traveler, history, result: rankingResult } = useMemo(
     () => computeResult(scenario, travelerId),
@@ -154,6 +169,9 @@ export function NorthStarProvider({ children }) {
       setScenarioId,
       scenarios: SCENARIOS,
       scenario,
+      mode,
+      setMode,
+      isLive,
       internalView,
       setInternalView,
       auditOpen,
@@ -169,6 +187,9 @@ export function NorthStarProvider({ children }) {
       scenarioId,
       setScenarioId,
       scenario,
+      mode,
+      setMode,
+      isLive,
       internalView,
       auditOpen,
       trip,

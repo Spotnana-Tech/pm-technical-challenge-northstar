@@ -3,9 +3,11 @@ import { Route, Routes } from 'react-router-dom'
 import AuditPanel from './components/AuditPanel.jsx'
 import Nav from './components/Nav.jsx'
 import ScenarioBar from './components/ScenarioBar.jsx'
+import SessionStrip from './components/SessionStrip.jsx'
 import Policy from './pages/Policy.jsx'
 import Results from './pages/Results.jsx'
 import Traveler from './pages/Traveler.jsx'
+import Worksheet from './pages/Worksheet.jsx'
 import { NorthStarProvider, useNorthStar } from './state/NorthStarContext.jsx'
 
 const ERRORS_SHOWN = 3
@@ -41,6 +43,7 @@ function Shell() {
     setInternalView,
     auditOpen,
     setAuditOpen,
+    isLive,
     traveler,
     result,
   } = useNorthStar()
@@ -62,6 +65,7 @@ function Shell() {
         onOpenAudit={() => setAuditOpen(true)}
         engineErrorCount={errors.length}
       />
+      {isLive ? <SessionStrip /> : null}
       <main className="page">
         {errors.length > 0 ? (
           <ErrorBanner errors={errors} onOpenAudit={() => setAuditOpen(true)} />
@@ -70,6 +74,7 @@ function Shell() {
           <Route path="/" element={<Results />} />
           <Route path="/traveler" element={<Traveler />} />
           <Route path="/policy" element={<Policy />} />
+          <Route path="/worksheet" element={<Worksheet />} />
         </Routes>
       </main>
       <AuditPanel
