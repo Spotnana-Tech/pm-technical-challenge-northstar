@@ -1,0 +1,62 @@
+[
+  {
+    "field": "policy_status",
+    "meaning": "The rule engine's verdict: IN_POLICY, APPROVAL_REQUIRED, or FAILS_CHECK.",
+    "nuance": "Reason codes are NOT in this extract. Where an option fails, identify the rule yourself from Policy_Rules. APPROVAL_REQUIRED means an approver could authorise it — it is not the same as forbidden, and not the same as approved."
+  },
+  {
+    "field": "content_source",
+    "meaning": "How the option reached NorthStar: NDC, GDS, DIRECT, NEGOTIATED, OTA, SUPPLIER_WEB, MOBILE_ONLY.",
+    "nuance": "The same underlying inventory can arrive by more than one route on different terms."
+  },
+  {
+    "field": "accessibility",
+    "meaning": "How firmly the accommodation is satisfied.",
+    "nuance": "AISLE_CONFIRMED is held now. AISLE_AT_CHECKIN and AISLE_NOT_CONFIRMED are not. Distances are the longest continuous walk."
+  },
+  {
+    "field": "on_time_pct_90d / cancel_pct_90d",
+    "meaning": "Carrier performance on this route over 90 days.",
+    "nuance": "May be blank."
+  },
+  {
+    "field": "review_score_5 / cancel_pct",
+    "meaning": "Hotel guest review out of 5, and predicted cancellation risk.",
+    "nuance": "May be blank. Blank is uncertainty, not zero."
+  },
+  {
+    "field": "co2_kg",
+    "meaning": "Estimated kilograms of CO2e per passenger.",
+    "nuance": "Sanity-check the column against its neighbours before using it."
+  },
+  {
+    "field": "commission_usd",
+    "meaning": "What NorthStar earns if the option is booked.",
+    "nuance": "This is NorthStar revenue. It is not traveler value."
+  },
+  {
+    "field": "rebate_usd",
+    "meaning": "What Vantage Robotics gets back.",
+    "nuance": "Client benefit. Track separately from commission."
+  },
+  {
+    "field": "mandatory_fees_usd",
+    "meaning": "Fees charged at the property that are not in total_stay_usd.",
+    "nuance": "Compare like with like."
+  },
+  {
+    "field": "duplicate_group",
+    "meaning": "Options sharing a group code are materially the same inventory.",
+    "nuance": "Do not spend two visible slots on one group."
+  },
+  {
+    "field": "availability",
+    "meaning": "AVAILABLE, WAITLIST or INVITE_ONLY.",
+    "nuance": "Not every row is bookable today."
+  },
+  {
+    "field": "booked_by",
+    "meaning": "Who selected the booking: self or arranger.",
+    "nuance": "Not every historical booking is evidence of the traveler's own preference."
+  }
+]

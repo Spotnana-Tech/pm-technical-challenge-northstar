@@ -1,0 +1,123 @@
+{
+  "T-1044": {
+    "traveler_id": "T-1044",
+    "name": "Priya Raghavan",
+    "fields": [
+      {
+        "field": "Name",
+        "value": "Priya Raghavan (T-1044)",
+        "how_to_read": "Fictional."
+      },
+      {
+        "field": "Role",
+        "value": "Staff robotics engineer, San Francisco",
+        "how_to_read": "Missing the customer commitment has real business cost."
+      },
+      {
+        "field": "Tenure",
+        "value": "Four years",
+        "how_to_read": "26 bookings on record. See Traveler_History."
+      },
+      {
+        "field": "Loyalty",
+        "value": "Meridian Air Platinum; Kestrel Hotels Gold",
+        "how_to_read": "Loyalty is a preference, not a rule."
+      },
+      {
+        "field": "Accommodation on file",
+        "value": "Aisle seat; step-free transfer; maximum 600 m continuous walking",
+        "how_to_read": "Hard constraint. Options record how firmly this is confirmed — read that field carefully."
+      },
+      {
+        "field": "Stated preferences",
+        "value": "Nonstop where available; morning departure; quiet room",
+        "how_to_read": "What she has said. History may or may not agree."
+      },
+      {
+        "field": "Personalization consent",
+        "value": "Behavioural personalization allowed; sensitive inference prohibited",
+        "how_to_read": "Do not infer health, family, age or any protected characteristic."
+      },
+      {
+        "field": "Approver",
+        "value": "Manager holds cost-centre approval authority",
+        "how_to_read": "Approvals currently run about one business day."
+      }
+    ],
+    "history_prefix": "H",
+    "is_cold_start": false,
+    "role": "Staff robotics engineer, San Francisco",
+    "tenure": "Four years",
+    "loyalty": "Meridian Air Platinum; Kestrel Hotels Gold",
+    "accommodation_on_file": "Aisle seat; step-free transfer; maximum 600 m continuous walking",
+    "stated_preferences": "Nonstop where available; morning departure; quiet room",
+    "personalization_consent": "Behavioural personalization allowed; sensitive inference prohibited",
+    "approver": "Manager holds cost-centre approval authority",
+    "loyalty_programs": [
+      {
+        "supplier": "Meridian Air",
+        "tier": "Platinum"
+      },
+      {
+        "supplier": "Kestrel Hotels",
+        "tier": "Gold"
+      }
+    ]
+  },
+  "T-2071": {
+    "traveler_id": "T-2071",
+    "name": "Marcus Webb",
+    "fields": [
+      {
+        "field": "Name",
+        "value": "Marcus Webb (T-2071)",
+        "how_to_read": "Fictional."
+      },
+      {
+        "field": "Role",
+        "value": "Robotics engineer, San Francisco",
+        "how_to_read": "Attending the same customer onsite as Priya."
+      },
+      {
+        "field": "Tenure",
+        "value": "Three weeks",
+        "how_to_read": "One booking on record. No travel behaviour to learn from."
+      },
+      {
+        "field": "Loyalty",
+        "value": "None declared",
+        "how_to_read": "Do not invent carrier or property affinity for him."
+      },
+      {
+        "field": "Accommodation on file",
+        "value": "None recorded",
+        "how_to_read": "Do not assume he shares Priya's accommodation."
+      },
+      {
+        "field": "Stated preferences",
+        "value": "Morning departure",
+        "how_to_read": "This is the only preference he has given. Use only this."
+      },
+      {
+        "field": "Approver",
+        "value": "Manager is acting; the permanent cost-centre owner starts next month",
+        "how_to_read": "Whether an acting manager may approve an above-ceiling fare is not recorded anywhere."
+      },
+      {
+        "field": "Your task",
+        "value": "One bundle you would default him to, plus the single question you would ask before booking",
+        "how_to_read": "Same 27 options. Explain what differs from Priya's answer and why."
+      }
+    ],
+    "history_prefix": "M",
+    "is_cold_start": true,
+    "role": "Robotics engineer, San Francisco",
+    "tenure": "Three weeks",
+    "loyalty": "None declared",
+    "accommodation_on_file": "None recorded",
+    "stated_preferences": "Morning departure",
+    "approver": "Manager is acting; the permanent cost-centre owner starts next month",
+    "your_task": "One bundle you would default him to, plus the single question you would ask before booking",
+    "loyalty_programs": []
+  }
+}

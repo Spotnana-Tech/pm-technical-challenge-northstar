@@ -1,0 +1,21 @@
+{
+  "id": "example-transfer-45",
+  "label": "Example — 45 minute ground transfer",
+  "trip": {
+    "ground_transfer_minutes": 45
+  },
+  "options": {
+    "A06": {
+      "fare_usd": 498
+    }
+  },
+  "knobs": {
+    "commission_weight_multiplier": 1.0
+  },
+  "notes": [
+    "Worked example of the scenario file format. Copy it, change the values, drop it in src/scenarios/ and it appears in the dropdown.",
+    "The ground transfer takes ten minutes longer than the trip request assumes.",
+    "One fare has been repriced upward.",
+    "Whether either edit changes the ranking depends entirely on what src/ranking/constitution.js reads."
+  ]
+}

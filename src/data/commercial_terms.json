@@ -1,0 +1,82 @@
+[
+  {
+    "supplier": "Meridian Air",
+    "vertical": "Air",
+    "relationship": "Traveler-preferred (loyalty)",
+    "commission_to_northstar": "None on NDC; USD 22 on GDS",
+    "rebate_to_vantage": "None",
+    "ranking_constraint": "Same flight sold twice. Deduplicate."
+  },
+  {
+    "supplier": "Summit Airways",
+    "vertical": "Air",
+    "relationship": "Client-negotiated",
+    "commission_to_northstar": "None",
+    "rebate_to_vantage": "USD 22–28",
+    "ranking_constraint": "Volume commitment at 58% against a 65% target."
+  },
+  {
+    "supplier": "Cascade Airlines",
+    "vertical": "Air",
+    "relationship": "NorthStar commercial agreement",
+    "commission_to_northstar": "USD 19–21",
+    "rebate_to_vantage": "None",
+    "ranking_constraint": "Never bypasses a HARD rule."
+  },
+  {
+    "supplier": "Corvus Air",
+    "vertical": "Air",
+    "relationship": "None",
+    "commission_to_northstar": "None",
+    "rebate_to_vantage": "None",
+    "ranking_constraint": "Neutral baseline."
+  },
+  {
+    "supplier": "Sunbeam Air",
+    "vertical": "Air",
+    "relationship": "NorthStar commercial agreement",
+    "commission_to_northstar": "USD 5–6",
+    "rebate_to_vantage": "None",
+    "ranking_constraint": "Lowest fares, weakest reliability."
+  },
+  {
+    "supplier": "Ridge Regional",
+    "vertical": "Air",
+    "relationship": "NorthStar commercial agreement",
+    "commission_to_northstar": "USD 9–11",
+    "rebate_to_vantage": "None",
+    "ranking_constraint": "Check availability state before ranking."
+  },
+  {
+    "supplier": "Kestrel Hotels",
+    "vertical": "Hotel",
+    "relationship": "Traveler-preferred + client-negotiated",
+    "commission_to_northstar": "USD 24–49",
+    "rebate_to_vantage": "USD 0–42",
+    "ranking_constraint": "Same room sold twice at different commission."
+  },
+  {
+    "supplier": "Baylight Resort",
+    "vertical": "Hotel",
+    "relationship": "NorthStar commercial agreement",
+    "commission_to_northstar": "USD 54",
+    "rebate_to_vantage": "None",
+    "ranking_constraint": "Compare on a complete total, not the displayed rate."
+  },
+  {
+    "supplier": "Civic Quay",
+    "vertical": "Hotel",
+    "relationship": "NorthStar commercial agreement",
+    "commission_to_northstar": "USD 62",
+    "rebate_to_vantage": "None",
+    "ranking_constraint": "Highest commission in the set."
+  },
+  {
+    "supplier": "Others",
+    "vertical": "Hotel",
+    "relationship": "Mixed",
+    "commission_to_northstar": "USD 8–45",
+    "rebate_to_vantage": "USD 0–32",
+    "ranking_constraint": "See Hotel_Options."
+  }
+]

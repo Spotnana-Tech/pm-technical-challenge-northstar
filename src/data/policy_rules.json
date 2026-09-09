@@ -1,0 +1,74 @@
+[
+  {
+    "rule_id": "P-01",
+    "applies_to": "Air",
+    "type": "HARD",
+    "rule": "Economy fare ceiling, one way",
+    "threshold": "USD 550. Above this the option is APPROVAL_REQUIRED, not forbidden.",
+    "exception_owner": "Cost centre owner"
+  },
+  {
+    "rule_id": "P-02",
+    "applies_to": "Air",
+    "type": "HARD",
+    "rule": "Minimum connection time, domestic",
+    "threshold": "90 minutes",
+    "exception_owner": "Travel manager"
+  },
+  {
+    "rule_id": "P-03",
+    "applies_to": "Air",
+    "type": "HARD",
+    "rule": "Cabin",
+    "threshold": "Economy only on flights under 8 hours",
+    "exception_owner": "Travel manager"
+  },
+  {
+    "rule_id": "P-04",
+    "applies_to": "All",
+    "type": "HARD",
+    "rule": "Accessibility accommodation",
+    "threshold": "Aisle seat, step-free transfer, max 600 m continuous walking",
+    "exception_owner": "Accessibility desk"
+  },
+  {
+    "rule_id": "P-05",
+    "applies_to": "Hotel",
+    "type": "HARD",
+    "rule": "Nightly room rate before tax",
+    "threshold": "USD 340",
+    "exception_owner": "Cost centre owner"
+  },
+  {
+    "rule_id": "P-06",
+    "applies_to": "Hotel",
+    "type": "HARD",
+    "rule": "Cancellation",
+    "threshold": "Refundable until at least 18:00 on 2026-04-12",
+    "exception_owner": "Travel manager"
+  },
+  {
+    "rule_id": "P-07",
+    "applies_to": "Hotel",
+    "type": "SOFT",
+    "rule": "Distance from campus",
+    "threshold": "3.0 miles. Above this may still rank if justified.",
+    "exception_owner": "Traveler"
+  },
+  {
+    "rule_id": "P-08",
+    "applies_to": "All",
+    "type": "HARD",
+    "rule": "Duty of care",
+    "threshold": "Booking must be visible to NorthStar or explicitly reconciled",
+    "exception_owner": "Security"
+  },
+  {
+    "rule_id": "P-09",
+    "applies_to": "Ranking",
+    "type": "GOVERNANCE",
+    "rule": "Commercial influence",
+    "threshold": "Never overrides a HARD rule. Material influence must be disclosed.",
+    "exception_owner": "Product + Legal"
+  }
+]

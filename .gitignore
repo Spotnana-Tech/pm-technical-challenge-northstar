@@ -1,0 +1,25 @@
+# Interviewer-only material — never commit
+private/
+*INTERVIEWER*
+*interviewer*
+*Interviewer*
+NOTES.md
+
+# Dependencies / build
+node_modules/
+dist/
+.vite/
+*.log
+npm-debug.log*
+.eslintcache
+
+# Env
+.env
+.env.local
+
+# OS / editor
+.DS_Store
+._*
+.vscode/
+.idea/
+*.swp
