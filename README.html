@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NorthStar &mdash; Ranking Exercise</title>
+<style>
+  :root { --bg: #fafafa; --panel: #fff; --ink: #1f2328; --muted: #656d76; --line: #d0d7de;
+    --accent: #0969da; --accent-soft: #ddf4ff; --warn-soft: #fff8c5; --warn: #9a6700;
+    --bad-soft: #ffebe9; --bad: #cf222e; --good-soft: #dafbe1; --good: #1a7f37;
+    --code-bg: #f6f8fa; --side-w: 260px; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --bg: #0d1117; --panel: #161b22; --ink: #e6edf3; --muted: #8b949e; --line: #30363d;
+    --accent: #58a6ff; --accent-soft: #0c2d6b; --warn-soft: #3a2d00; --warn: #d29922;
+    --bad-soft: #4a1114; --bad: #ff7b72; --good-soft: #0f3a1c; --good: #3fb950;
+    --code-bg: #1c2128; }
+  }
+  :root[data-theme="dark"] { --bg: #0d1117; --panel: #161b22; --ink: #e6edf3; --muted: #8b949e; --line: #30363d;
+    --accent: #58a6ff; --accent-soft: #0c2d6b; --warn-soft: #3a2d00; --warn: #d29922;
+    --bad-soft: #4a1114; --bad: #ff7b72; --good-soft: #0f3a1c; --good: #3fb950;
+    --code-bg: #1c2128; }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 16px; color-scheme: light dark; }
+  :root[data-theme="light"] { color-scheme: light; }
+  :root[data-theme="dark"] { color-scheme: dark; }
+  body { margin: 0; font: 15px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; color: var(--ink); background: var(--bg); display: flex; }
+  nav { position: sticky; top: 0; height: 100vh; width: var(--side-w); flex: 0 0 var(--side-w); overflow-y: auto; padding: 20px 14px; border-right: 1px solid var(--line); background: var(--panel); }
+  nav h1 { font-size: 14px; margin: 0 0 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+  nav a { display: block; padding: 5px 8px; border-radius: 6px; color: var(--ink); text-decoration: none; font-size: 14px; }
+  nav a:hover { background: var(--accent-soft); }
+  nav a.active { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+  nav .sub a { padding-left: 20px; font-size: 13px; color: var(--muted); }
+  nav .tools { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 6px; }
+  nav button { flex: 1 1 45%; font-size: 12px; padding: 5px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); border-radius: 6px; cursor: pointer; }
+  nav button:hover { background: var(--accent-soft); }
+  nav .sibling { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--line); font-size: 12px; color: var(--muted); }
+  nav .sibling a { font-size: 13px; color: var(--accent); padding: 3px 8px; }
+  main { flex: 1; min-width: 0; max-width: 960px; padding: 28px 40px 80px; }
+  main > header h1 { margin: 0 0 6px; font-size: 26px; }
+  main > header p { margin: 0; color: var(--muted); }
+  section { margin-top: 28px; }
+  details { border: 1px solid var(--line); border-radius: 8px; background: var(--panel); margin: 10px 0; }
+  details > summary { cursor: pointer; padding: 12px 16px; font-weight: 600; font-size: 16px; list-style: none; display: flex; align-items: center; gap: 10px; }
+  details > summary::-webkit-details-marker { display: none; }
+  details > summary::before { content: "\25B8"; color: var(--muted); font-size: 13px; transition: transform .15s; }
+  details[open] > summary::before { transform: rotate(90deg); }
+  details > .body { padding: 0 16px 16px; border-top: 1px solid var(--line); }
+  details details { margin: 8px 0; }
+  details details > summary { font-size: 14px; padding: 8px 12px; }
+  details details > .body { padding: 0 12px 12px; }
+  h2 { font-size: 20px; margin: 0; }
+  h3 { font-size: 15px; margin: 16px 0 6px; }
+  h4 { font-size: 14px; margin: 14px 0 4px; }
+  p { margin: 10px 0; }
+  ul, ol { margin: 8px 0; padding-left: 22px; }
+  li { margin: 4px 0; }
+  code { font: 13px ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--code-bg); padding: 1px 5px; border-radius: 4px; }
+  pre { background: var(--code-bg); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; overflow-x: auto; margin: 10px 0; }
+  pre code { background: none; padding: 0; font-size: 12.5px; line-height: 1.5; }
+  pre.wide code { font-size: 11.5px; line-height: 1.45; }
+  pre .cmt { color: var(--muted); }
+  table { border-collapse: collapse; width: 100%; margin: 10px 0; font-size: 14px; }
+  th, td { border: 1px solid var(--line); padding: 6px 10px; text-align: left; vertical-align: top; }
+  th { background: var(--code-bg); }
+  .callout { border-left: 4px solid var(--accent); background: var(--accent-soft); padding: 10px 14px; border-radius: 0 6px 6px 0; margin: 12px 0; }
+  .callout.warn { border-color: var(--warn); background: var(--warn-soft); }
+  .callout.bad { border-color: var(--bad); background: var(--bad-soft); }
+  .callout.good { border-color: var(--good); background: var(--good-soft); }
+  .tag { display: inline-block; font-size: 11px; font-weight: 600; padding: 1px 7px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); margin-left: 6px; }
+  .tag.acc { color: var(--accent); border-color: var(--accent); }
+  .kbd { font-size: 12px; color: var(--muted); }
+  dl { margin: 10px 0; }
+  dt { font-weight: 600; margin-top: 10px; }
+  dd { margin: 3px 0 0 0; padding-left: 14px; border-left: 2px solid var(--line); color: var(--ink); }
+  @media (max-width: 800px) { nav { display: none; } main { padding: 20px; } }
+  @media print { nav { display: none; } details { break-inside: avoid; } details > .body { display: block !important; } }
+</style>
+</head>
+<body>
+<nav>
+  <h1>Contents</h1>
+  <a href="#what">What this is</a>
+  <a href="#timebox">Time box</a>
+  <a href="#deliverables">Deliverables</a>
+  <a href="#formats">Two formats</a>
+  <a href="#setup">Setup</a>
+  <a href="#map">Repo map</a>
+  <a href="#change">What you can change</a>
+  <a href="#app">What the app shows you</a>
+  <a href="#scenarios">Scenarios</a>
+  <a href="#submitting">Submitting</a>
+  <a href="#questions">Questions</a>
+  <a href="#synthetic">Synthetic data</a>
+  <div class="tools">
+    <button id="openAll">Expand all</button>
+    <button id="closeAll">Collapse all</button>
+    <button id="themeBtn">Dark mode</button>
+    <button id="printBtn">Print</button>
+  </div>
+</nav>
+
+<main>
+<header>
+  <h1>NorthStar &mdash; Ranking Exercise</h1>
+  <p>Product manager exercise. Rank the options, decide what the page shows, write down the rules you used.</p>
+</header>
+
+<section id="what">
+  <details open>
+    <summary><h2>What this is</h2></summary>
+    <div class="body">
+      <p>You are the product manager for the flight and hotel results page at <b>NorthStar Travel</b>, a fictional corporate travel platform. This repo <i>is</i> that results page, wired up and running against a real trip request for one traveler, with a second, newly hired traveler for the cold-start question.</p>
+      <p><b>Your job:</b> rank the options, decide what the page shows and tells people, and write down the rules you used.</p>
+      <div class="callout">Everything in it &mdash; people, company, carriers, properties, dates, prices &mdash; is synthetic.</div>
+    </div>
+  </details>
+</section>
+
+<section id="timebox">
+  <details open>
+    <summary><h2>Time box</h2></summary>
+    <div class="body">
+      <p>This exercise runs in two formats &mdash; a take-home or a single 60-minute live session &mdash; and <b>your recruiter will tell you which one you are in</b>. The time box and deliverables below are the take-home format; see <a href="#formats">Two formats</a>.</p>
+      <p><b>Three hours, hard stop.</b> We would rather see a sharp partial answer than a padded complete one. Don't try to cover everything; decide what matters most and go deep on that.</p>
+      <div class="callout good"><b>AI tools are allowed and expected.</b> You will be assessed on judgment, verification and ownership &mdash; not on which tools you used or how the prose reads.</div>
+    </div>
+  </details>
+</section>
+
+<section id="deliverables">
+  <details open>
+    <summary><h2>Deliverables <span class="tag acc">take-home</span></h2></summary>
+    <div class="body">
+      <ol>
+        <li><b>The workbook.</b> <code>workbook/NorthStar Exercise - Candidate Workbook.xlsx</code> has four sheets for you to fill in: <code>Submission</code>, <code>Ranking_Constitution</code>, <code>Evidence_Ledger</code>, <code>Cold_Start_Answer</code>. <b>This is the scored submission.</b></li>
+        <li><b>Your edits to <code>src/ranking/constitution.js</code>.</b> Strongly encouraged. The live review runs this app with your file in place, so what you wrote is what gets demonstrated.</li>
+        <li><b>An optional <code>NOTES.md</code></b> at the repo root (already listed in <code>.gitignore</code>, so it will not show up in <code>git status</code>) describing any changes you would make to the results page UI itself and why.</li>
+      </ol>
+      <div class="callout warn"><b>No memo, no deck, no separate write-up.</b> The workbook sheets and your code are the submission.</div>
+    </div>
+  </details>
+</section>
+
+<section id="formats">
+  <details>
+    <summary><h2>Two formats</h2></summary>
+    <div class="body">
+      <p>Same trip, same page, same questions, assessed the same way. Your recruiter will tell you which format you are in.</p>
+      <h3>Take-home</h3>
+      <p>As described above: three hours in your own time, the workbook, your edits to <code>src/ranking/constitution.js</code> if you make any, an optional <code>NOTES.md</code>, and a live review afterwards.</p>
+      <h3>Live (60 minutes)</h3>
+      <p>Nothing to prepare beyond installing the app and reading this page &mdash; about fifteen minutes. We work in the app together on a shared screen for one hour. The <b>Worksheet</b> page replaces the workbook: you fill it in as we go and export it at the end, so <b>there is nothing to write up and nothing to send afterwards</b>.</p>
+      <p>Open the app with <code>?mode=live</code> &mdash; <code>http://localhost:5173/?mode=live</code> &mdash; and a session strip appears under the scenario bar showing the agenda and the clock:</p>
+      <table>
+        <tr><th>Segment</th><th>Minutes</th></tr>
+        <tr><td>Framing</td><td>5</td></tr>
+        <tr><td>Audit today's page</td><td>15</td></tr>
+        <tr><td>Write the rules</td><td>15</td></tr>
+        <tr><td>Make one rule bind</td><td>10</td></tr>
+        <tr><td>New fact, rerank, cold start</td><td>10</td></tr>
+        <tr><td>Wrap</td><td>5</td></tr>
+      </table>
+      <p>You may edit <code>src/ranking/constitution.js</code> during the session, and one of the segments is for exactly that. You can type it yourself or dictate it and we will type &mdash; <b>nothing is scored on typing speed</b>, and we care about where a rule belongs and what you expect it to change far more than about whether it runs first time.</p>
+    </div>
+  </details>
+</section>
+
+<section id="setup">
+  <details open>
+    <summary><h2>Setup</h2></summary>
+    <div class="body">
+      <p>Requires <b>Node 18 or later</b>.</p>
+      <pre><code>npm install
+npm run dev</code></pre>
+      <p>Then open the URL Vite prints (usually <code>http://localhost:5173</code>). <b>No network access is needed after <code>npm install</code>.</b></p>
+      <table>
+        <tr><th>Script</th><th>What it does</th></tr>
+        <tr><td><code>npm run dev</code></td><td>Start the app locally, with hot reload</td></tr>
+        <tr><td><code>npm run build</code></td><td>Production build (not needed to complete the exercise)</td></tr>
+        <tr><td><code>npm run lint</code></td><td>ESLint over the whole repo</td></tr>
+        <tr><td><code>npm run build-data</code></td><td>Regenerate <code>src/data/*.json</code> from the workbook &mdash; see below, you should not need this</td></tr>
+        <tr><td><code>npm run print-ranking</code></td><td>Print the current ranking as a table in the terminal (<code>-- --traveler &lt;id&gt; --scenario &lt;id&gt; --reasons</code>)</td></tr>
+      </table>
+    </div>
+  </details>
+</section>
+
+<section id="map">
+  <details>
+    <summary><h2>Repo map</h2></summary>
+    <div class="body">
+      <pre><code>Northstar/
+├── workbook/                     the exercise workbook (.xlsx) — source of truth for the trip
+├── scripts/build-data.mjs        turns the workbook into src/data/*.json
+├── scripts/print-ranking.mjs     prints the current ranking in the terminal
+├── src/
+│   ├── data/                     generated JSON: trip, travelers, air/hotel options, policy rules,
+│   │                             commercial terms, traveler history, data dictionary
+│   ├── ranking/
+│   │   ├── constitution.js       ★ yours to edit — the ranking logic
+│   │   ├── engine.js             pipeline that calls constitution.js and builds the audit trail
+│   │   └── helpers.js            shared utilities used by both
+│   ├── scenarios/                scenario JSON files the app can load (see below)
+│   ├── state/                    app-wide context: current traveler, scenario, view state
+│   ├── components/                UI pieces: nav, cards, audit panel, etc.
+│   └── pages/                    Results, Traveler, Policy, Worksheet
+└── README.md</code></pre>
+      <p><code>src/data/*.json</code> is generated from the workbook by <code>npm run build-data</code> and is already committed &mdash; <b>you never need to run that script yourself</b>.</p>
+      <p>The JSON keeps the workbook's column names exactly as written (snake_case, no translation), plus a small number of fields the build script derives for convenience:</p>
+      <dl>
+        <dt><code>product</code></dt><dd><code>'air'</code> or <code>'hotel'</code></dd>
+        <dt><code>accessibility_flags</code></dt><dd>the accessibility column split into a list</dd>
+        <dt><code>source_row</code></dt><dd>where the row came from in the workbook</dd>
+      </dl>
+      <p>Traveler records also carry <code>name</code>, <code>traveler_id</code>, <code>loyalty_programs</code> (parsed from the loyalty column into structured entries), <code>history_prefix</code>, <code>is_cold_start</code>, and <code>fields</code> (the workbook's own field/value/how-to-read rows, for display). They flatten each profile row into a snake_case key &mdash; <code>role</code>, <code>tenure</code>, <code>loyalty</code>, <code>accommodation_on_file</code>, <code>stated_preferences</code>, <code>personalization_consent</code>, <code>approver</code>, and for the second traveler <code>your_task</code>. History rows carry <code>traveler_id</code> so they can be filtered per traveler.</p>
+    </div>
+  </details>
+</section>
+
+<section id="change">
+  <details open>
+    <summary><h2>What you can change</h2></summary>
+    <div class="body">
+      <p><code>src/ranking/constitution.js</code> is <b>yours to rewrite</b>, in whole or in part. <code>engine.js</code> and <code>helpers.js</code> are read-only by convention &mdash; read them to understand what they do, but the exercise is about the judgment calls in <code>constitution.js</code>, not about changing the plumbing around it.</p>
+      <p><code>constitution.js</code> exports seven things. The engine calls them in order and records what each one returns, so <b>anything you write here shows up in the audit trail</b>:</p>
+      <pre><code>export const META = { name: string, version: string }
+
+export function isEligible(option, ctx)
+// → { eligible: boolean, state: &#x27;BOOKABLE&#x27;|&#x27;APPROVAL_REQUIRED&#x27;|&#x27;INELIGIBLE&#x27;, reasons: string[] }
+
+export function baseScore(option, ctx)
+// → number — traveler-facing quality only, no commission or rebate
+
+export function commercialAdjustment(option, ctx)
+// → { delta: number, disclosure: string|null }
+
+export function diversify(ranked, ctx)
+// → string[] — option ids, in display order
+
+export function disclose(row, ctx)
+// → { traveler_text: string|null, client_text: string|null, tags: string[] }
+
+export function buildBundles(flights, hotels, ctx)
+// → { rank, flight_option_id, hotel_option_id, comparable_total_usd, note }[] — at most three</code></pre>
+      <p><code>ctx</code> is frozen and shaped as <code>{ trip, traveler, history, policyRules, commercialTerms, scenario: { id, label, knobs } }</code>. <code>history</code> is already narrowed to the traveler currently being ranked.</p>
+      <div class="callout warn">The shipped <code>constitution.js</code> is the ranker NorthStar runs in production today. <b>It is not a model answer.</b></div>
+      <div class="callout good">The engine wraps every one of these calls, so if your code throws or returns something malformed, the page shows an error banner and falls back to a neutral default for that call instead of going blank. <b>You can experiment freely without worrying about crashing the app.</b></div>
+    </div>
+  </details>
+</section>
+
+<section id="app">
+  <details>
+    <summary><h2>What the app shows you</h2></summary>
+    <div class="body">
+      <h3>Results</h3>
+      <p>The main page: the top three flight-plus-hotel bundles, then the ranked flight and hotel lists, with a marked "displayed" set and a collapsible "Filtered out" group underneath for anything ineligible. It reads live from whatever <code>constitution.js</code> currently produces.</p>
+      <h3>Traveler</h3>
+      <p>The traveler's profile and their full booking history, exactly as it sits in the workbook.</p>
+      <h3>Policy</h3>
+      <p>The policy rules, the commercial terms, and the data dictionary for the underlying fields, so you can <b>check what a column actually means before you rely on it</b>.</p>
+      <h3>Worksheet</h3>
+      <p>Where the written answer goes in the live format: the workbook's four submission sheets as a page, autosaved in your browser, with an <b>Export markdown</b> button that copies and downloads the whole thing. In the take-home format it is a scratchpad &mdash; the workbook is still the submission.</p>
+      <h3>Internal view toggle</h3>
+      <p>Off by default. Shows what the traveler themselves would never see: commission, rebate, and the other internal figures behind each option. Toggling it off <b>removes that information from the page entirely, not just visually</b>. The audit panel is the exception: it always shows the commercial delta for every option, because that is what it is for.</p>
+      <h3>Audit panel</h3>
+      <p>Lists, for every option, its base score, commercial delta, final score, rank before and after that delta, and any disclosure text &mdash; with a button to copy the whole table as JSON. It's the same data the engine hands to <code>disclose</code>, made visible for debugging.</p>
+      <p>There's also a <b>traveler toggle</b> in the scenario bar, letting you switch between the two travelers the exercise covers without reloading the page.</p>
+    </div>
+  </details>
+</section>
+
+<section id="scenarios">
+  <details>
+    <summary><h2>Scenarios</h2></summary>
+    <div class="body">
+      <p>The app loads every <code>.json</code> file in <code>src/scenarios/</code> and lists them in a dropdown. <code>src/scenarios/example-transfer-45.json</code> is a worked example &mdash; open it to see the shape:</p>
+      <pre><code>{
+  &quot;id&quot;: &quot;...&quot;,
+  &quot;label&quot;: &quot;...&quot;,
+  &quot;trip&quot;: { ... },
+  &quot;travelers&quot;: { &quot;&lt;traveler_id&gt;&quot;: { ... } },
+  &quot;options&quot;: { &quot;&lt;option_id&gt;&quot;: { ... } },
+  &quot;knobs&quot;: { &quot;commission_weight_multiplier&quot;: 1.0 },
+  &quot;notes&quot;: [&quot;...&quot;]
+}</code></pre>
+      <p>A scenario patches the trip request, one or more travelers, and/or individual options, <b>without touching the underlying data files</b> &mdash; switching scenarios in the dropdown is always reversible. Copy the example file, change the values, drop it in <code>src/scenarios/</code>, and it appears in the dropdown automatically. If you would rather not commit a scenario, <code>private/scenarios/</code> is gitignored and loaded the same way &mdash; anything from there is marked <code>local</code> in the dropdown.</p>
+      <p>You can also load a scenario directly via the URL: <code>?scenario=&lt;id&gt;&amp;traveler=&lt;id&gt;</code>.</p>
+      <div class="callout">In the live review, or during a live session, <b>we may load a scenario you have not seen</b>.</div>
+    </div>
+  </details>
+</section>
+
+<section id="submitting">
+  <details>
+    <summary><h2>Submitting <span class="tag acc">take-home</span></h2></summary>
+    <div class="body">
+      <p>Zip up the filled workbook, your <code>src/ranking/constitution.js</code> if you changed it, and <code>NOTES.md</code> if you wrote one, and send that zip to your recruiter. In the live format there is nothing to submit: the exported worksheet is the record.</p>
+      <div class="callout bad"><b>Please do not open a pull request and do not push a public fork of this repo</b> &mdash; it's public, and a fork would make your answer visible to other candidates.</div>
+    </div>
+  </details>
+</section>
+
+<section id="questions">
+  <details>
+    <summary><h2>Questions</h2></summary>
+    <div class="body">
+      <p>You may ask <b>up to three questions</b>. Material answers will be shared with every active candidate.</p>
+    </div>
+  </details>
+</section>
+
+<section id="synthetic">
+  <details>
+    <summary><h2>Synthetic data</h2></summary>
+    <div class="body">
+      <p>Every person, company, carrier, property, date, price and reference in this repo is invented for the exercise. <b>Please don't research them.</b></p>
+    </div>
+  </details>
+</section>
+
+</main>
+<script>
+
+// Theme: follows the OS by default, manual override persists.
+(function () {
+  const root = document.documentElement;
+  const btn = document.getElementById('themeBtn');
+  const saved = localStorage.getItem('ns-theme');
+  if (saved === 'light' || saved === 'dark') root.dataset.theme = saved;
+  const systemDark = () => window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const effective = () => root.dataset.theme || (systemDark() ? 'dark' : 'light');
+  function label() {
+    const auto = !root.dataset.theme;
+    btn.textContent = effective() === 'dark' ? 'Light mode' : 'Dark mode';
+    btn.title = auto ? 'Following your system setting. Click to override.'
+                     : 'Overridden to ' + root.dataset.theme + '. Shift-click to follow the system again.';
+  }
+  btn.onclick = (e) => {
+    if (e.shiftKey) {
+      delete root.dataset.theme;
+      localStorage.removeItem('ns-theme');
+    } else {
+      const next = effective() === 'dark' ? 'light' : 'dark';
+      root.dataset.theme = next;
+      localStorage.setItem('ns-theme', next);
+    }
+    label();
+  };
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', label);
+  label();
+})();
+
+const all = () => document.querySelectorAll('details');
+document.getElementById('openAll').onclick = () => all().forEach(d => d.open = true);
+document.getElementById('closeAll').onclick = () => all().forEach(d => d.open = false);
+const printBtn = document.getElementById('printBtn');
+if (printBtn) printBtn.onclick = () => window.print();
+
+// Opening a nav link expands the target and its ancestors.
+document.querySelectorAll('nav a[href^="#"]').forEach(a => a.addEventListener('click', () => {
+  const t = document.querySelector(a.getAttribute('href'));
+  if (!t) return;
+  let el = t.tagName === 'DETAILS' ? t : t.querySelector('details');
+  if (el) el.open = true;
+  for (let p = t.parentElement; p; p = p.parentElement) if (p.tagName === 'DETAILS') p.open = true;
+}));
+
+// Highlight active section in nav.
+const links = [...document.querySelectorAll('nav a[href^="#"]')];
+const targets = links.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id));
+  });
+}, { rootMargin: '0px 0px -75% 0px' });
+targets.forEach(t => obs.observe(t));
+</script>
+</body>
+</html>
