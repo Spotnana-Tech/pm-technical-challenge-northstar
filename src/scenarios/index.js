@@ -24,16 +24,17 @@
 
 import { NONE_SCENARIO } from '../ranking/defaults.js'
 
-const candidateModules = import.meta.glob('./*.json', { eager: true })
-// Absent from a candidate checkout; the glob resolves to `{}` and the app runs unchanged.
-const privateModules = import.meta.glob('../../private/scenarios/*.json', { eager: true })
+const committedModules = import.meta.glob('./*.json', { eager: true })
+// `private/` is gitignored scratch space for scenarios you would rather not commit. It is
+// absent from a fresh checkout, where this glob resolves to `{}` and the app runs unchanged.
+const localModules = import.meta.glob('../../private/scenarios/*.json', { eager: true })
 
 /** The unpatched data set. Always first in the dropdown. Shares its id and
  * label with the engine's fallback context — one string, one place. */
 export const NONE = Object.freeze({
   id: NONE_SCENARIO.id,
   label: NONE_SCENARIO.label,
-  internal: false,
+  local: false,
   trip: {},
   travelers: {},
   options: {},
@@ -47,7 +48,7 @@ function idFromPath(path) {
   return file.replace(/\.json$/i, '')
 }
 
-function loadGlob(modules, internal) {
+function loadGlob(modules, local) {
   return Object.keys(modules)
     .sort()
     .map((path) => {
@@ -55,7 +56,7 @@ function loadGlob(modules, internal) {
       const scenario = raw?.default ?? raw ?? {}
       const id = scenario.id ?? idFromPath(path)
       return Object.freeze({
-        internal,
+        local,
         ...scenario,
         id,
         label: scenario.label ?? id,
@@ -68,7 +69,7 @@ function loadGlob(modules, internal) {
     })
 }
 
-const SCENARIOS = [NONE, ...loadGlob(candidateModules, false), ...loadGlob(privateModules, true)]
+const SCENARIOS = [NONE, ...loadGlob(committedModules, false), ...loadGlob(localModules, true)]
 
 /** @returns {object[]} every scenario the app can load, `NONE` first. */
 export function listScenarios() {

@@ -92,6 +92,8 @@ if (!travelerRecord) {
 
 // ------------------------------------------------------------------ scenarios
 
+// Committed scenarios first, then `private/` — gitignored scratch space for scenarios you
+// would rather not commit. That directory is absent from a fresh checkout.
 const SCENARIO_DIRS = [join(root, 'src', 'scenarios'), join(root, 'private', 'scenarios')]
 
 function loadScenario(id) {

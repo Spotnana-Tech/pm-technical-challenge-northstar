@@ -45,11 +45,11 @@ export default function ScenarioBar({
               {scenarios.map((scenario) => (
                 <option key={scenario.id} value={scenario.id}>
                   {scenario.label}
-                  {scenario.internal ? ' (internal)' : ''}
+                  {scenario.local ? ' (local)' : ''}
                 </option>
               ))}
             </select>
-            {selected?.internal ? <span className="ns-badge ns-badge--info">internal</span> : null}
+            {selected?.local ? <span className="ns-badge ns-badge--info">local</span> : null}
           </span>
         </label>
 

@@ -147,7 +147,7 @@ The app loads every `.json` file in `src/scenarios/` and lists them in a dropdow
 }
 ```
 
-A scenario patches the trip request, one or more travelers, and/or individual options, without touching the underlying data files — switching scenarios in the dropdown is always reversible. Copy the example file, change the values, drop it in `src/scenarios/`, and it appears in the dropdown automatically.
+A scenario patches the trip request, one or more travelers, and/or individual options, without touching the underlying data files — switching scenarios in the dropdown is always reversible. Copy the example file, change the values, drop it in `src/scenarios/`, and it appears in the dropdown automatically. If you would rather not commit a scenario, `private/scenarios/` is gitignored and loaded the same way — anything from there is marked `local` in the dropdown.
 
 You can also load a scenario directly via the URL: `?scenario=<id>&traveler=<id>`.
 
