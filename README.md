@@ -157,10 +157,6 @@ In the live review, or during a live session, we may load a scenario you have no
 
 Zip up the filled workbook, your `src/ranking/constitution.js` if you changed it, and `NOTES.md` if you wrote one, and send that zip to your recruiter. In the live format there is nothing to submit: the exported worksheet is the record. Please do not open a pull request and do not push a public fork of this repo — it's public, and a fork would make your answer visible to other candidates.
 
-## Questions
-
-You may ask up to three questions. Material answers will be shared with every active candidate.
-
 ## Synthetic data
 
 Every person, company, carrier, property, date, price and reference in this repo is invented for the exercise. Please don't research them.
